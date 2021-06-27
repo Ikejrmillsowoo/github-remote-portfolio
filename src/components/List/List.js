@@ -8,9 +8,15 @@ text-align: left;
 padding: 0;
 `
 
+const Title = styled.h2 
+`
+border-bottom: 1px solid light-Grey;
+padding: 10px 0;
+`
+
 const ListItem = styled.li 
 `
-displaye: flex;
+display: flex;
 justify-content: space-between;
 `
 const Label = styled.span 
@@ -18,18 +24,21 @@ const Label = styled.span
 font-weight: strong;
 `
 
-const List = ({items}) => {
+const List = ({items, title}) => {
     return (
+        <>
+        <Title>{title}</Title>
         <ListWrapper>
         {items.map((item) => {
             console.log(item)
             return (
             <ListItem key={item.label}>
-                <Label>{item.label}</Label>{item.value}
+                <Label>{item.label}:</Label>{item.value}
             </ListItem>
             )
         })}
     </ListWrapper>
+    </>
     )
     
 }

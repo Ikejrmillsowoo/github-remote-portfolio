@@ -23,7 +23,7 @@ pointer-events: none;
 const Header = () => {
     return (
       <HeaderWrapper>
-        <img src={logo} className="App-logo" alt="logo" />
+        <Logo src={logo}  alt="logo" />
        <h1>My GitHub Portfolio</h1>        
     </HeaderWrapper>
     )

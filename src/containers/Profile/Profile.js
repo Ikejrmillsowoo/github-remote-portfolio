@@ -20,6 +20,7 @@ class Profile extends Component {
         super()
         this.state = {
             data: {},
+            repositories: [],
             loading: true
         }
     }
@@ -30,16 +31,18 @@ async componentDidMount() {
     const profileJSON = await profile.json()
 
     if (profileJSON) {
+        const repositories = await fetch(profileJSON.repos_url)
+        const repositoriesJSON = await repositories.json()
         this.setState({
             data: profileJSON,
+            repositories: repositoriesJSON,
             loading: false
         })
     }
 }
 
 render() {
-    const { data, loading } = this.state 
-    console.log(data)
+    const { data, loading, repositories } = this.state 
      if (loading) {
         return <div>Loading...</div>
      }
@@ -54,12 +57,16 @@ render() {
          {label: 'bio', value: data.bio},
      ]
 
+     const projects = repositories.map(repository => ({
+         label: repository.name, value: <Link url={repository.html_url} title='Github URL' />
+     }))
+
     return (
         <ProfileWrapper>
-            <Avatar src={data.avatar_url} alt="avatar" className="Profile-avatar" />
-            <List items={items} />
-       
-    </ProfileWrapper>
+            <Avatar src={data.avatar_url} alt="avatar" />
+            <List items={items} title='Profile'/>
+            <List items={projects} title='Projects'/> 
+        </ProfileWrapper>
     )
 }
 
