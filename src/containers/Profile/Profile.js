@@ -11,6 +11,10 @@ margin: 10px auto;
 
 const Avatar = styled.img
 `
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 50%;
 width: 150px;
 `
 

@@ -12,6 +12,7 @@ const Title = styled.h2
 `
 border-bottom: 1px solid light-Grey;
 padding: 10px 0;
+text-align: center;
 `
 
 const ListItem = styled.li 
@@ -30,10 +31,9 @@ const List = ({items, title}) => {
         <Title>{title}</Title>
         <ListWrapper>
         {items.map((item) => {
-            console.log(item)
             return (
             <ListItem key={item.label}>
-                <Label>{item.label}:</Label>{item.value}
+                <Label>{item.label}</Label>{item.value}
             </ListItem>
             )
         })}
